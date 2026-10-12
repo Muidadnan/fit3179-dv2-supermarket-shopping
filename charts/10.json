@@ -1,0 +1,76 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#58687A",
+      "titleColor": "#42576E",
+      "gridColor": "#E7ECEF",
+      "tickColor": "#D0DDE2",
+      "domain": false,
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#33475B"
+    },
+    "title": {
+      "font": "Inter",
+      "fontSize": 15
+    }
+  },
+  "width": "container",
+  "height": 265,
+  "data": {
+    "url": "data/market_change.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 4
+  },
+  "encoding": {
+    "y": {
+      "field": "brand",
+      "type": "nominal",
+      "sort": {
+        "field": "change_pp",
+        "order": "descending"
+      },
+      "title": null
+    },
+    "x": {
+      "field": "change_pp",
+      "type": "quantitative",
+      "title": "Change in percentage points (2002–03 to 2022–23)"
+    },
+    "color": {
+      "condition": {
+        "test": "datum.change_pp >= 0",
+        "value": "#167C80"
+      },
+      "value": "#D87C47"
+    },
+    "tooltip": [
+      {
+        "field": "brand"
+      },
+      {
+        "field": "start",
+        "title": "2002–03 (%)"
+      },
+      {
+        "field": "end",
+        "title": "2022–23 (%)"
+      },
+      {
+        "field": "change_pp",
+        "title": "Change (pp)"
+      }
+    ]
+  }
+}

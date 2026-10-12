@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#58687A",
+      "titleColor": "#42576E",
+      "gridColor": "#E7ECEF",
+      "tickColor": "#D0DDE2",
+      "domain": false,
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#33475B"
+    },
+    "title": {
+      "font": "Inter",
+      "fontSize": 15
+    }
+  },
+  "width": 465,
+  "height": 300,
+  "data": {
+    "url": "data/tiles.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 7,
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null
+        },
+        "color": {
+          "field": "wool_share",
+          "type": "quantitative",
+          "title": "Woolworths share (%)",
+          "scale": {
+            "scheme": "tealblues",
+            "domain": [
+              50,
+              75
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal"
+          },
+          {
+            "field": "woolworths",
+            "type": "quantitative"
+          },
+          {
+            "field": "coles",
+            "type": "quantitative"
+          },
+          {
+            "field": "wool_share",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Woolworths % of two"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 17,
+        "fontWeight": "bold",
+        "color": "#092A3A"
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null
+        },
+        "text": {
+          "field": "code",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

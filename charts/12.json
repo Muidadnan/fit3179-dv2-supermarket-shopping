@@ -1,0 +1,96 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#58687A",
+      "titleColor": "#42576E",
+      "gridColor": "#E7ECEF",
+      "tickColor": "#D0DDE2",
+      "domain": false,
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#33475B"
+    },
+    "title": {
+      "font": "Inter",
+      "fontSize": 15
+    }
+  },
+  "width": "container",
+  "height": 280,
+  "data": {
+    "url": "data/abs_monthly_food_retail.csv"
+  },
+  "transform": [
+    {
+      "filter": "isValid(datum.yoy_pct) && datum.yoy_pct !== \"\""
+    },
+    {
+      "calculate": "toNumber(datum.yoy_pct)",
+      "as": "yoy"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "stroke": "#ffffff",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Year"
+    },
+    "y": {
+      "field": "month_name",
+      "type": "ordinal",
+      "sort": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      "title": null
+    },
+    "color": {
+      "field": "yoy",
+      "type": "quantitative",
+      "title": "Year-on-year change (%)",
+      "scale": {
+        "scheme": "redyellowgreen",
+        "domainMid": 0
+      }
+    },
+    "tooltip": [
+      {
+        "field": "year"
+      },
+      {
+        "field": "month_name",
+        "title": "Month"
+      },
+      {
+        "field": "yoy",
+        "type": "quantitative",
+        "format": "+.1f",
+        "title": "Change (%)"
+      }
+    ]
+  }
+}

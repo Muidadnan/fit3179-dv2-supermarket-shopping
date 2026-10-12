@@ -1,0 +1,17 @@
+state,code,brand,stores,per100k,share
+Western Australia,WA,Woolworths,117,3.78,52.9
+Western Australia,WA,Coles,104,3.36,47.1
+Northern Territory,NT,Woolworths,12,4.46,60.0
+Northern Territory,NT,Coles,8,2.98,40.0
+South Australia,SA,Woolworths,69,3.6,56.6
+South Australia,SA,Coles,53,2.77,43.4
+Queensland,QLD,Woolworths,264,4.6,58.1
+Queensland,QLD,Coles,190,3.31,41.9
+New South Wales,NSW,Woolworths,348,4.01,57.4
+New South Wales,NSW,Coles,258,2.98,42.6
+Australian Capital Territory,ACT,Woolworths,20,4.08,60.6
+Australian Capital Territory,ACT,Coles,13,2.65,39.4
+Victoria,VIC,Woolworths,280,3.91,54.4
+Victoria,VIC,Coles,235,3.28,45.6
+Tasmania,TAS,Woolworths,32,5.51,65.3
+Tasmania,TAS,Coles,17,2.93,34.7

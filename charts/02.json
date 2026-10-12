@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#58687A",
+      "titleColor": "#42576E",
+      "gridColor": "#E7ECEF",
+      "tickColor": "#D0DDE2",
+      "domain": false,
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#33475B"
+    },
+    "title": {
+      "font": "Inter",
+      "fontSize": 15
+    }
+  },
+  "width": 470,
+  "height": 360,
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E7EDF0",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      }
+    },
+    {
+      "data": {
+        "url": "data/states.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.82,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "total",
+          "type": "quantitative",
+          "title": "Number of stores",
+          "scale": {
+            "range": [
+              100,
+              2200
+            ]
+          }
+        },
+        "color": {
+          "value": "#167C80"
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal"
+          },
+          {
+            "field": "total",
+            "type": "quantitative",
+            "title": "Coles + Woolworths"
+          }
+        ]
+      }
+    }
+  ]
+}

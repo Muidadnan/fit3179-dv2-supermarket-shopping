@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#58687A",
+      "titleColor": "#42576E",
+      "gridColor": "#E7ECEF",
+      "tickColor": "#D0DDE2",
+      "domain": false,
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#33475B"
+    },
+    "title": {
+      "font": "Inter",
+      "fontSize": 15
+    }
+  },
+  "width": 470,
+  "height": 360,
+  "projection": {
+    "type": "equalEarth"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.properties.STATE_NAME",
+      "as": "state"
+    },
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "data/states.csv",
+          "format": {
+            "type": "csv"
+          }
+        },
+        "key": "state",
+        "fields": [
+          "total",
+          "per100k",
+          "wool_share",
+          "woolworths",
+          "coles"
+        ]
+      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#ffffff",
+    "strokeWidth": 1.4
+  },
+  "encoding": {
+    "color": {
+      "field": "per100k",
+      "type": "quantitative",
+      "title": "Stores per 100k people",
+      "scale": {
+        "scheme": "tealblues"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "total",
+        "type": "quantitative",
+        "title": "Combined stores"
+      },
+      {
+        "field": "per100k",
+        "type": "quantitative",
+        "title": "Stores / 100k",
+        "format": ".2f"
+      }
+    ]
+  }
+}

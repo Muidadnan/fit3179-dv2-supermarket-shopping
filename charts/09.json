@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#58687A",
+      "titleColor": "#42576E",
+      "gridColor": "#E7ECEF",
+      "tickColor": "#D0DDE2",
+      "domain": false,
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#33475B"
+    },
+    "title": {
+      "font": "Inter",
+      "fontSize": 15
+    }
+  },
+  "width": "container",
+  "height": 275,
+  "data": {
+    "url": "data/market_ranks.csv"
+  },
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": true,
+      "size": 130
+    },
+    "strokeWidth": 3
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "sort": [
+        "2002–03",
+        "2006–07",
+        "2022–23"
+      ],
+      "title": "Financial year"
+    },
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          4.3,
+          0.7
+        ]
+      },
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "title": "Rank among four participants"
+      }
+    },
+    "color": {
+      "field": "brand",
+      "scale": {
+        "domain": [
+          "Woolworths",
+          "Coles",
+          "ALDI",
+          "Metcash wholesale supply"
+        ],
+        "range": [
+          "#167C80",
+          "#D87C47",
+          "#F0B36A",
+          "#347CA0"
+        ]
+      },
+      "title": null
+    },
+    "detail": {
+      "field": "brand"
+    },
+    "tooltip": [
+      {
+        "field": "brand"
+      },
+      {
+        "field": "year"
+      },
+      {
+        "field": "rank",
+        "type": "quantitative"
+      },
+      {
+        "field": "share",
+        "type": "quantitative",
+        "title": "Reported share (%)"
+      }
+    ],
+    "opacity": {
+      "condition": {
+        "param": "rankBrand",
+        "value": 1
+      },
+      "value": 0.14
+    }
+  },
+  "params": [
+    {
+      "name": "rankBrand",
+      "select": {
+        "type": "point",
+        "fields": [
+          "brand"
+        ]
+      },
+      "bind": "legend"
+    }
+  ]
+}

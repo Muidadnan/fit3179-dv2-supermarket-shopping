@@ -1,0 +1,171 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#58687A",
+      "titleColor": "#42576E",
+      "gridColor": "#E7ECEF",
+      "tickColor": "#D0DDE2",
+      "domain": false,
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#33475B"
+    },
+    "title": {
+      "font": "Inter",
+      "fontSize": 15
+    }
+  },
+  "width": 485,
+  "height": 435,
+  "data": {
+    "url": "data/dorling_cartogram.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "stroke": "#ffffff",
+        "strokeWidth": 2,
+        "opacity": 0.93
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              500
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              440
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "size": {
+          "field": "stores",
+          "type": "quantitative",
+          "title": "Coles + Woolworths stores",
+          "scale": {
+            "type": "linear",
+            "domain": [
+              0,
+              606
+            ],
+            "range": [
+              0,
+              8500
+            ]
+          }
+        },
+        "color": {
+          "field": "wool_share",
+          "type": "quantitative",
+          "title": "Woolworths share of the two (%)",
+          "scale": {
+            "domain": [
+              50,
+              70
+            ],
+            "range": [
+              "#BFE3DC",
+              "#06656C"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "stores",
+            "type": "quantitative",
+            "title": "Two-chain stores"
+          },
+          {
+            "field": "woolworths",
+            "type": "quantitative",
+            "title": "Woolworths"
+          },
+          {
+            "field": "coles",
+            "type": "quantitative",
+            "title": "Coles"
+          },
+          {
+            "field": "wool_share",
+            "type": "quantitative",
+            "title": "Woolworths proportion (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "font": "sans-serif",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              500
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              440
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "code",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.wool_share>=58",
+            "value": "#ffffff"
+          },
+          "value": "#123B41"
+        }
+      }
+    }
+  ]
+}

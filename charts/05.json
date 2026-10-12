@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#58687A",
+      "titleColor": "#42576E",
+      "gridColor": "#E7ECEF",
+      "tickColor": "#D0DDE2",
+      "domain": false,
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#33475B"
+    },
+    "title": {
+      "font": "Inter",
+      "fontSize": 15
+    }
+  },
+  "width": "container",
+  "height": 340,
+  "data": {
+    "url": "data/brands_by_state.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 3
+  },
+  "encoding": {
+    "y": {
+      "field": "code",
+      "type": "nominal",
+      "sort": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "WA",
+        "SA",
+        "TAS",
+        "ACT",
+        "NT"
+      ],
+      "title": null
+    },
+    "yOffset": {
+      "field": "brand"
+    },
+    "x": {
+      "field": "stores",
+      "type": "quantitative",
+      "title": "Number of stores",
+      "scale": {
+        "zero": true
+      }
+    },
+    "color": {
+      "field": "brand",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Woolworths",
+          "Coles"
+        ],
+        "range": [
+          "#167C80",
+          "#D87C47"
+        ]
+      },
+      "title": null
+    },
+    "tooltip": [
+      {
+        "field": "state"
+      },
+      {
+        "field": "brand"
+      },
+      {
+        "field": "stores",
+        "type": "quantitative"
+      }
+    ],
+    "opacity": {
+      "condition": {
+        "param": "brandFilter",
+        "value": 1
+      },
+      "value": 0.18
+    }
+  },
+  "params": [
+    {
+      "name": "brandFilter",
+      "select": {
+        "type": "point",
+        "fields": [
+          "brand"
+        ]
+      },
+      "bind": "legend"
+    }
+  ]
+}

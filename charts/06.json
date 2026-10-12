@@ -1,0 +1,125 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#58687A",
+      "titleColor": "#42576E",
+      "gridColor": "#E7ECEF",
+      "tickColor": "#D0DDE2",
+      "domain": false,
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#33475B"
+    },
+    "title": {
+      "font": "Inter",
+      "fontSize": 15
+    }
+  },
+  "width": "container",
+  "height": 320,
+  "data": {
+    "url": "data/brands_by_state.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "stroke": "#AABCC6",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "code",
+          "sort": [
+            "NSW",
+            "VIC",
+            "QLD",
+            "WA",
+            "SA",
+            "TAS",
+            "ACT",
+            "NT"
+          ],
+          "title": null
+        },
+        "x": {
+          "field": "per100k",
+          "type": "quantitative",
+          "title": "Stores per 100k residents",
+          "scale": {
+            "zero": true
+          }
+        },
+        "detail": {
+          "field": "code"
+        },
+        "order": {
+          "field": "per100k"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 140
+      },
+      "encoding": {
+        "x": {
+          "field": "per100k",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "code",
+          "sort": [
+            "NSW",
+            "VIC",
+            "QLD",
+            "WA",
+            "SA",
+            "TAS",
+            "ACT",
+            "NT"
+          ]
+        },
+        "color": {
+          "field": "brand",
+          "scale": {
+            "domain": [
+              "Woolworths",
+              "Coles"
+            ],
+            "range": [
+              "#167C80",
+              "#D87C47"
+            ]
+          },
+          "title": null
+        },
+        "tooltip": [
+          {
+            "field": "state"
+          },
+          {
+            "field": "brand"
+          },
+          {
+            "field": "per100k",
+            "type": "quantitative",
+            "title": "Per 100k",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ]
+}

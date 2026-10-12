@@ -1,0 +1,228 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "background": null,
+  "width": 790,
+  "height": 242,
+  "padding": 5,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "id": "All",
+          "parent": null,
+          "brand": "All",
+          "share": 0
+        },
+        {
+          "id": "Woolworths",
+          "parent": "All",
+          "brand": "Woolworths",
+          "share": 32.5
+        },
+        {
+          "id": "Coles",
+          "parent": "All",
+          "brand": "Coles",
+          "share": 24.8
+        },
+        {
+          "id": "ALDI",
+          "parent": "All",
+          "brand": "ALDI",
+          "share": 8.1
+        },
+        {
+          "id": "Metcash wholesale supply",
+          "parent": "All",
+          "brand": "Metcash wholesale supply",
+          "share": 5.7
+        },
+        {
+          "id": "Other retailers",
+          "parent": "All",
+          "brand": "Other retailers",
+          "share": 28.9
+        }
+      ]
+    },
+    {
+      "name": "tree",
+      "source": "source",
+      "transform": [
+        {
+          "type": "stratify",
+          "key": "id",
+          "parentKey": "parent"
+        },
+        {
+          "type": "treemap",
+          "field": "share",
+          "method": "squarify",
+          "round": true,
+          "sort": {
+            "field": "value",
+            "order": "descending"
+          },
+          "size": [
+            {
+              "signal": "width"
+            },
+            {
+              "signal": "height"
+            }
+          ],
+          "padding": 3
+        }
+      ]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth > 0"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "category",
+      "type": "ordinal",
+      "domain": [
+        "Woolworths",
+        "Coles",
+        "ALDI",
+        "Metcash wholesale supply",
+        "Other retailers"
+      ],
+      "range": [
+        "#167C80",
+        "#D87C47",
+        "#F0B36A",
+        "#347CA0",
+        "#A5BAC0"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "name": "tiles",
+      "type": "rect",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "cornerRadius": {
+            "value": 3
+          },
+          "fill": {
+            "scale": "category",
+            "field": "brand"
+          },
+          "stroke": {
+            "value": "#ffffff"
+          },
+          "strokeWidth": {
+            "value": 1
+          },
+          "tooltip": {
+            "signal": "datum.brand + \": \" + format(datum.share, \".1f\") + \"%\""
+          }
+        }
+      }
+    },
+    {
+      "name": "labels",
+      "type": "text",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "datum.x0 + 11"
+          },
+          "y": {
+            "signal": "datum.y0 + 22"
+          },
+          "text": {
+            "field": "brand"
+          },
+          "font": {
+            "value": "DM Sans"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fill": {
+            "value": "#ffffff"
+          },
+          "limit": {
+            "signal": "max(0,datum.x1-datum.x0-18)"
+          },
+          "opacity": {
+            "signal": "(datum.x1-datum.x0)>95 && (datum.y1-datum.y0)>55 ? 1 : 0"
+          }
+        }
+      }
+    },
+    {
+      "name": "values",
+      "type": "text",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "datum.x0 + 11"
+          },
+          "y": {
+            "signal": "datum.y0 + 47"
+          },
+          "text": {
+            "signal": "format(datum.share, \".1f\") + \"%\""
+          },
+          "font": {
+            "value": "DM Sans"
+          },
+          "fontSize": {
+            "value": 22
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fill": {
+            "value": "#ffffff"
+          },
+          "opacity": {
+            "signal": "(datum.x1-datum.x0)>70 && (datum.y1-datum.y0)>65 ? 1 : 0"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#58687A",
+      "titleColor": "#42576E",
+      "gridColor": "#E7ECEF",
+      "tickColor": "#D0DDE2",
+      "domain": false,
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#33475B"
+    },
+    "title": {
+      "font": "Inter",
+      "fontSize": 15
+    }
+  },
+  "width": "container",
+  "height": 280,
+  "data": {
+    "url": "data/abs_monthly_food_retail.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#D8EDEB",
+        "line": {
+          "color": "#167C80",
+          "strokeWidth": 2.8
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": null
+        },
+        "y": {
+          "field": "turnover_m",
+          "type": "quantitative",
+          "title": "Monthly turnover ($m)",
+          "scale": {
+            "zero": false
+          }
+        },
+        "tooltip": [
+          {
+            "field": "date",
+            "type": "temporal",
+            "timeUnit": "yearmonth",
+            "title": "Month"
+          },
+          {
+            "field": "turnover_m",
+            "type": "quantitative",
+            "title": "$m",
+            "format": ",.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.date === \"2025-06-01\""
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 140,
+        "color": "#D87C47"
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "turnover_m",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+state,code,woolworths,coles,total,population,per100k,wool_share,coles_share,lon,lat
+Western Australia,WA,117,104,221,3096200,7.14,52.9,47.1,119,-26.0
+Northern Territory,NT,12,8,20,268900,7.44,60.0,40.0,133.7,-19.0
+South Australia,SA,69,53,122,1916800,6.36,56.6,43.4,134,-30.6
+Queensland,QLD,264,190,454,5739500,7.91,58.1,41.9,144.2,-22.2
+New South Wales,NSW,348,258,606,8670100,6.99,57.4,42.6,147.2,-32.4
+Australian Capital Territory,ACT,20,13,33,489700,6.74,60.6,39.4,149.1,-35.2
+Victoria,VIC,280,235,515,7154200,7.2,54.4,45.6,144.5,-37.3
+Tasmania,TAS,32,17,49,580700,8.44,65.3,34.7,146.7,-42.2
