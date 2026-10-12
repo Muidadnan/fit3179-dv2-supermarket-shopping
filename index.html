@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Where Australia's supermarkets are, and how grocery shopping has changed. FIT3179 interactive data visualisation showcase." name="description"/>
+<title>Australia's Supermarket Map | FIT3179 DV2</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<script defer="" src="scripts/main.js"></script>
+</head>
+<body>
+<div class="accent-line"></div>
+<header class="site-header shell"><a class="site-logo" href="#top"><span class="mark-logo">S<span class="logo-dot">●</span></span> SUPERMARKET ATLAS</a><nav aria-label="Main sections"><a href="#footprint">Store footprint</a><a href="#competition">Competition</a><a href="#spending">Spending</a><a href="#sources">Sources</a></nav><span class="edition">OCT 2026 <span class="edition-dot"></span> DV2 SHOWCASE</span></header>
+<main id="top">
+<section class="hero shell">
+<div class="eyebrow"><span class="eyeline"></span> DATA STORY <span class="pip">/</span> AUSTRALIA</div>
+<div class="hero-grid"><div>
+<h1>Australia's <em>supermarket</em> landscape.</h1>
+<p class="deck">Where the big chains are, how their footprints compare, and how spending on food has evolved across the country.</p>
+<div class="hero-meta"><span>12 Vega / Vega-Lite charts</span><span>4 map designs (3 distinct types)</span><span>5 underlying sources</span></div>
+</div><aside class="hero-feature"><div class="feature-label">THE BIG PICTURE <span>01 / 03</span></div><div class="feature-number" id="total-stores">2,020</div><p>Combined Coles and Woolworths supermarkets counted across Australia in the 2026 location snapshots.</p><div class="feature-bars"><span class="feature-a" style="width:56.5%"></span><span class="feature-b" style="width:43.5%"></span></div><div class="feature-legend"><span><i class="dot w"></i> Woolworths 1,142</span><span><i class="dot c"></i> Coles 878</span></div></aside></div>
+<div class="hero-bottom"><span>AN INTERACTIVE DATA STORY</span><a href="#footprint">EXPLORE THE MAPS <span aria-hidden="true">↓</span></a></div>
+</section>
+<section class="section shell" id="footprint"><div class="section-kicker">CHAPTER 01 <span class="sep">—</span> THE FOOTPRINT</div><h2>Where are Australia's <span>big supermarkets?</span></h2><p class="section-lead">Raw store totals favour populous states. Compare store availability relative to the latest ABS population estimates, then explore the footprint through three different spatial approaches.</p>
+<div class="chart-grid two-col">
+<article class="chart-panel"><div class="chart-heading"><span class="no">01</span><div><div class="type-tag">ADVANCED · CHOROPLETH MAP</div><h3>Stores relative to population</h3><p>Coles + Woolworths supermarkets per 100,000 residents by state.</p></div></div><div aria-label="Map of Coles and Woolworths supermarkets per 100,000 residents" class="chart" id="vis01" role="group"></div><div class="chart-note"><strong>Read the colour:</strong> darker states have more outlets per resident—not necessarily better real-world access.</div></article>
+<article class="chart-panel"><div class="chart-heading"><span class="no">02</span><div><div class="type-tag">ADVANCED · PROPORTIONAL SYMBOL MAP</div><h3>Where most stores sit</h3><p>Each circle represents a whole state's combined chain total.</p></div></div><div aria-label="Proportional circles for supermarket counts placed on Australian states" class="chart" id="vis02" role="group"></div><div class="chart-note"><strong>Circle area = outlets.</strong> Symbols are anchored approximately within each state, not at precise shop addresses.</div></article>
+<article class="chart-panel wide">
+<div class="chart-heading"><span class="no">03</span><div><div class="type-tag">ADVANCED · DORLING CARTOGRAM</div>
+<h3>If every state was a circle, how big would it be?</h3>
+<p>Each state or territory becomes a circle. Circle area represents its number of Coles and Woolworths supermarkets; colour represents the Woolworths proportion of those two chains.</p></div></div>
+<div aria-label="Dorling-style circle cartogram of Australian states by combined supermarket location count" class="chart" id="vis03" role="group"></div>
+<div class="chart-note"><strong>Distinct from the symbol map:</strong> state polygons are replaced entirely by non-overlapping circles arranged in an approximate geographic layout. This is a deliberately schematic, state-level cartogram; it does not show actual stores or distances.</div>
+</article><article class="chart-panel"><div class="chart-heading"><span class="no">04</span><div><div class="type-tag">ADVANCED · SCHEMATIC TILE MAP (CHECK WITH TUTOR)</div><h3>Who leads in each state?</h3><p>Woolworths' proportion of the two chains' combined store count.</p></div></div><div aria-label="Equal-size state tiles coloured by Woolworths share" class="chart" id="vis04" role="group"></div><div class="chart-note">Equal-size tiles show state identity without giving larger states more visual weight. Layout is <strong>schematic</strong>.</div></article>
+<article class="chart-panel"><div class="chart-heading"><span class="no">05</span><div><div class="type-tag">BASIC · GROUPED BAR CHART</div><h3>Count them side by side</h3><p>Physical supermarket locations across eight states and territories.</p></div></div><div aria-label="Grouped bar chart of Coles and Woolworths store counts by state" class="chart" id="vis05" role="group"></div><div class="chart-note">NSW, Victoria and Queensland contain the majority of both chains' sites in this snapshot.</div></article>
+<article class="chart-panel wide"><div class="chart-heading"><span class="no">06</span><div><div class="type-tag">ADVANCED · CONNECTED DOT PLOT</div><h3>Does a bigger state mean a bigger choice?</h3><p>Stores per 100,000 residents for each brand. The line connects two comparable estimates within each state.</p></div></div><div aria-label="Connected dot plot comparing per-capita store density for both chains" class="chart" id="vis06" role="group"></div><div class="chart-note"><strong>Limitation:</strong> store-to-population ratios don't capture travel time, competition from Aldi and independents, shop size, or regional inequality.</div></article>
+</div>
+</section>
+<div class="mid-break"><span>02</span><div>Big chains, big questions.</div></div>
+<section class="section shell" id="competition"><div class="section-kicker">CHAPTER 02 <span class="sep">—</span> THE COMPETITION</div><h2>A market shaped by <span>a few big players.</span></h2><p class="section-lead">The ACCC estimated the shares of national take-home food and grocery sales, providing a second perspective that store counts alone can't reveal.</p>
+<div class="chart-grid two-col">
+<article class="chart-panel wide"><div class="chart-heading"><span class="no">07</span><div><div class="type-tag">ADVANCED · TREEMAP</div><h3>How the grocery market is divided</h3><p>Estimated national take-home food and grocery sales share, financial year 2022–23.</p></div></div><div aria-label="Proportional mosaic showing ACCC estimated shares" class="chart" id="vis07" role="group"></div><div class="mosaic-caption"><span><i class="dot w"></i> Woolworths</span><span><i class="dot c"></i> Coles</span><span><i class="dot a"></i> ALDI</span><span><i class="dot m"></i> Metcash wholesale</span><span><i class="dot o"></i> Other retailers</span></div><div class="chart-note">Metcash is measured as <strong>wholesale supply</strong>, not a single retail chain. Shares are from FY2022–23, not 2026.</div></article>
+<article class="chart-panel wide">
+<div class="chart-heading"><span class="no">08</span><div><div class="type-tag">ADVANCED · WAFFLE CHART</div>
+<h3>About 57 of every 100 grocery-sales dollars</h3>
+<p>The ACCC estimated that Coles and Woolworths together accounted for 57.3% of national take-home food and grocery sales in 2022–23.</p></div></div>
+<div aria-label="Waffle chart of 57 out of 100 squares representing combined Woolworths and Coles market share" class="chart" id="vis08" role="group"></div>
+<div class="chart-note"><strong>How to read:</strong> each square stands for roughly one percentage point. The 57 coloured squares round the exact 57.3% figure; this is a proportion of grocery sales, <em>not</em> a share of stores or shopping trips.</div></article><article class="chart-panel"><div class="chart-heading"><span class="no">09</span><div><div class="type-tag">ADVANCED · BUMP CHART</div><h3>How the pecking order shifted</h3><p>Relative rankings of four named supermarket participants over three periods.</p></div></div><div aria-label="Bump chart of four named supermarket participants over three fiscal years" class="chart" id="vis09" role="group"></div><div class="chart-note">ALDI overtakes the Metcash category in the reported figures between 2006–07 and 2022–23; <strong>ranking is not size</strong>.</div></article>
+<article class="chart-panel"><div class="chart-heading"><span class="no">10</span><div><div class="type-tag">BASIC · DIVERGING BAR CHART</div><h3>Twenty years of shifts</h3><p>Change in reported share from 2002–03 to 2022–23, in percentage points.</p></div></div><div aria-label="Diverging bars with change in estimated share over two decades" class="chart" id="vis10" role="group"></div><div class="chart-note"><strong>Not a growth rate:</strong> the chart shows a difference between two percentages (percentage points).</div></article>
+</div>
+</section>
+<div class="mid-break aqua"><span>03</span><div>And then there's spending.</div></div>
+<section class="section shell" id="spending"><div class="section-kicker">CHAPTER 03 <span class="sep">—</span> THE SPENDING</div><h2>The food economy keeps <span>moving.</span></h2><p class="section-lead">Australia's reported food retailing turnover moved higher from 2020 to 2025. These are nominal sales figures—part of that increase may reflect higher prices, not more groceries in the trolley.</p>
+<div class="chart-grid two-col">
+<article class="chart-panel wide"><div class="chart-heading"><span class="no">11</span><div><div class="type-tag">BASIC · AREA / LINE CHART</div><h3>Five years of food retailing</h3><p>National monthly food retailing turnover, seasonally adjusted, in $ million.</p></div></div><div aria-label="Line chart of food retailing turnover June 2020 to June 2025" class="chart" id="vis11" role="group"></div><div class="chart-note">ABS food retailing also includes specialist food stores and liquor retailers. This is a <strong>national nominal turnover measure</strong>, not household grocery spending.</div></article>
+<article class="chart-panel wide"><div class="chart-heading"><span class="no">12</span><div><div class="type-tag">ADVANCED · HEATMAP</div><h3>Which months changed most?</h3><p>Year-on-year change compared with the same month in the previous year, 2021–2025.</p></div></div><div aria-label="Heatmap of annual percentage change in food retailing by month" class="chart" id="vis12" role="group"></div><div class="chart-note">Each square compares the national turnover with <strong>the same calendar month a year earlier</strong>; missing 2020 comparisons are deliberately excluded.</div></article>
+</div>
+</section>
+<section class="outro shell"><div class="section-kicker">THE TAKEAWAY</div><h2>Store count isn't the same as shopper choice.</h2><p>Coles and Woolworths are present across all eight states and territories. But geographic totals hide regional gaps, and the ACCC's separate market estimates remind us that size and purchasing power are more than just the number of locations. For a stronger final assignment, the next step would be to add postcode-level accessibility or comparable grocery-basket price data.</p><a class="back-top" href="#top">BACK TO TOP ↑</a></section>
+</main>
+<footer id="sources"><div class="shell"><div class="footer-title">Sources &amp; methodology</div><p class="footer-intro">Interaction: hover or tap a chart mark for a tooltip; select a retailer using the coloured legend in the store comparison and the rank chart to highlight it. Click the same legend item again to clear the highlight.</p><p class="footer-intro">This is a working FIT3179 DV2 showcase, not yet the final submitted assignment. The tile map is supplementary; the choropleth, proportional-symbol map, and Dorling cartogram supply three distinct map idioms. It deliberately combines different time periods but labels each; do not interpret 2022–23 sales estimates as 2026 market shares. Hover over marks to see exact values.</p><ol>
+<li><a href="https://www.scrapehero.com/location-reports/Woolworths%20Supermarkets-Australia/" rel="noopener noreferrer" target="_blank">ScrapeHero — Woolworths Supermarkets locations, 5 Oct 2026</a></li>
+<li><a href="https://www.scrapehero.com/location-reports/Coles%2520Supermarkets-Australia/" rel="noopener noreferrer" target="_blank">ScrapeHero — Coles Supermarkets locations, 28 Sep 2026</a></li>
+<li><a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/mar-2026" rel="noopener noreferrer" target="_blank">ABS — Population, March 2026 (normalisation)</a></li>
+<li><a href="https://www.accc.gov.au/system/files/supermarkets-inquiry-2024-2025-interim-report.pdf" rel="noopener noreferrer" target="_blank">ACCC — Supermarkets Inquiry interim report, Figure 1.1</a></li>
+<li><a href="https://www.abs.gov.au/statistics/industry/retail-and-wholesale-trade/retail-trade-australia/jun-2025" rel="noopener noreferrer" target="_blank">ABS — Retail Trade, June 2025, food retailing time series</a></li>
+<li><a href="https://github.com/tonywr71/GeoJson-Data" rel="noopener noreferrer" target="_blank">Australian state boundary geometry (GeoJSON)</a></li>
+</ol><p class="footer-intro">Typography: Google Fonts, <a href="https://fonts.google.com/specimen/DM+Sans" target="_blank" rel="noopener noreferrer">DM Sans</a> and <a href="https://fonts.google.com/specimen/Outfit" target="_blank" rel="noopener noreferrer">Outfit</a> (open-source fonts). The visuals themselves are original Vega/Vega-Lite specifications.</p><div class="fineprint"><strong>Author:</strong> Syed Abdul Muid Adnan <span>·</span> <strong>Prepared:</strong> 13 October 2026 <span>·</span> <strong>University:</strong> Monash University <span>·</span> <strong>Course:</strong> FIT3179</div><p class="fineprint">AI use: OpenAI ChatGPT assisted with JavaScript, HTML/CSS, Vega and Vega-Lite specifications, layout, narrative drafting, and derived CSV preparation. User review and attribution are still required. All underlying numerical statistics are attributed above. Check each source before final assessment submission.</p></div></footer>
+</body>
+</html>
